@@ -11,7 +11,7 @@ int main()
 	if (Kinect_count == 0)
 	{
 		printf("AzureKinect尚未连接至设备\n");
-		return;
+		return 1;
 	}
 	else printf("AzureKInect设备数为：%d\n", Kinect_count);
 
@@ -20,7 +20,7 @@ int main()
 	if (K4A_FAILED(k4a_device_open(K4A_DEVICE_DEFAULT, &Kinect_1)))
 	{
 		printf("AzureKinect打开失败\n");
-		return;
+		return 1;
 	}
 
 	//获取序列号，确保能用
@@ -42,7 +42,7 @@ int main()
 	if (K4A_FAILED(k4a_device_start_cameras(Kinect_1, &Kinect_1_config)))
 	{
 		printf("打开相机失败!\n");
-		return;
+		return 1;
 	}
 
 	//这其中开始对其进行各种处理
