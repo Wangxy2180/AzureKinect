@@ -12,7 +12,7 @@
 #define DEPTH_NOVF_UNBIN_HEIGHT 576
 #define DEPTH_NOVF_UNBIN_WIDTH 640
 
-//WOVFƒ£ Ω≤ª÷ß≥÷30fps
+//WOVFÊ®°Âºè‰∏çÊîØÊåÅ30fps
 #define DEPTH_WOVF_2X2BIN_HEIGHT 512
 #define DEPTH_WOVF_2X2BIN_WIDTH 512
 
@@ -27,12 +27,12 @@ int main()
 	uint32_t Kinect_count = k4a::device::get_installed_count();
 	if (Kinect_count == 0)
 	{
-		cout << "Œ¥∑¢œ÷Kinect" << endl;
+		cout << "Êú™ÂèëÁé∞Kinect" << endl;
 	}
-	else cout << "AzureKinect  ˝¡ø «£∫" << Kinect_count << endl;
+	else cout << "AzureKinect Êï∞ÈáèÊòØÔºö" << Kinect_count << endl;
 
-	//Ω¯––Kinect≈‰÷√
-	//color_formatƒ¨»œMJPG£¨µ´ «OpenCV «BGRA£¨∞¥πŸ∑ΩµƒÀµ∑®£¨BGRAª·‘ˆº”CPU∏∫‘ÿ
+	//ËøõË°åKinectÈÖçÁΩÆ
+	//color_formatÈªòËÆ§MJPGÔºå‰ΩÜÊòØOpenCVÊòØBGRAÔºåÊåâÂÆòÊñπÁöÑËØ¥Ê≥ïÔºåBGRA‰ºöÂ¢ûÂä†CPUË¥üËΩΩ
 	k4a_device_configuration_t Kinect_1_config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
 	Kinect_1_config.camera_fps = K4A_FRAMES_PER_SECOND_30;
 	Kinect_1_config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
@@ -41,14 +41,14 @@ int main()
 
 	k4a::device Kinect_1_device = NULL;
 
-	//“‘œ¬’‚¡Ω÷÷∂ºø…“‘¥Úø™
+	//‰ª•‰∏ãËøô‰∏§ÁßçÈÉΩÂèØ‰ª•ÊâìÂºÄ
 	Kinect_1_device = k4a::device::open(K4A_DEVICE_DEFAULT);
 	//Kinect_1_device = Kinect_1_device.open(K4A_DEVICE_DEFAULT);
 	cout << "open Kinect" << endl;
 
 	string Kinect_1_serialnum;
 	Kinect_1_serialnum = Kinect_1_device.get_serialnum();
-	cout << "Kinect–Ú¡–∫≈ «£∫" << Kinect_1_serialnum << endl;
+	cout << "KinectÂ∫èÂàóÂè∑ÊòØÔºö" << Kinect_1_serialnum << endl;
 
 	Kinect_1_device.start_cameras(&Kinect_1_config);
 	cout << "start cameras" << endl;
@@ -56,19 +56,19 @@ int main()
 	k4a::capture capture;
 	k4a::image color_image;
 	/*
-	//»Áπ˚Œﬁ∑®‘§œ»»∑∂®∑÷±Ê¬ £¨ø…“‘‘⁄—≠ª∑÷–≤…”√
+	//Â¶ÇÊûúÊó†Ê≥ïÈ¢ÑÂÖàÁ°ÆÂÆöÂàÜËæ®ÁéáÔºåÂèØ‰ª•Âú®Âæ™ÁéØ‰∏≠ÈááÁî®
 	//colorFrame = cv::Mat(colorImage.get_height_pixels(), colorImage.get_width_pixels(), CV_8UC4);
-	//’‚—˘µƒ∑Ω∑®»•◊ˆ≥ı ºªØ
+	//ËøôÊ†∑ÁöÑÊñπÊ≥ïÂéªÂÅöÂàùÂßãÂåñ
 	*/
 	cv::Mat color_frame(COLOR_HEIGHT_720P,COLOR_WIDTH_720P,CV_8UC4);
 
-	Sleep(1000);//–›’˚1√Î£¨∑Ò‘ÚÃ´øÏª·µº÷¬«∞∆⁄≥ˆœ÷ get capture failed
-	int while_count = 0;//—≠ª∑º∆ ˝
+	Sleep(1000);//‰ºëÊï¥1ÁßíÔºåÂê¶ÂàôÂ§™Âø´‰ºöÂØºËá¥ÂâçÊúüÂá∫Áé∞ get capture failed
+	int while_count = 0;//Âæ™ÁéØËÆ°Êï∞
 	while (1)
 	{
 		cout << while_count++ << endl;
 	
-		//√ªÃ´ø¥√˜∞◊¥¯≤ª¥¯timeoutµƒ«¯±
+		//Ê≤°Â§™ÁúãÊòéÁôΩÂ∏¶‰∏çÂ∏¶timeoutÁöÑÂå∫Âà´
 		//Kinect_1_device.get_capture(&capture);
 		if (Kinect_1_device.get_capture(&capture, std::chrono::milliseconds(0)))
 		{
