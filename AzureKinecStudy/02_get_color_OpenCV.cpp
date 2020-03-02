@@ -19,7 +19,6 @@
 #define DEPTH_WOVF_UNBIN_HEIGHT 1024
 #define DEPTH_WOVF_UNBIN_WIDTH 1024
 
-
 using namespace std;
 
 int main()
