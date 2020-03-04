@@ -5,3 +5,6 @@ AzureKinect的一些东西
 
 
 <a href="https://docs.microsoft.com/zh-cn/azure/Kinect-dk/" target="_blank">AzureKinct官方文档</a>
+
+
+[github参考代码 KinectAzureDKProgramming](https://github.com/forestsen/KinectAzureDKProgramming)
