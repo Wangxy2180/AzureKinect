@@ -10,24 +10,24 @@
 using namespace std;
 using namespace cv;
 
-//ËäÈ»ÊÇcppÎÄ¼ş£¬µ«ÊÇ²ÉÓÃµÄÊÇc api
+//è™½ç„¶æ˜¯cppæ–‡ä»¶ï¼Œä½†æ˜¯é‡‡ç”¨çš„æ˜¯c api
 int main()
 {
 	uint32_t kinect_count = k4a_device_get_installed_count();
 	if (kinect_count == 0)
 	{
-		cout << "Î´¼ì²âµ½AzureKinect" << endl;
+		cout << "æœªæ£€æµ‹åˆ°AzureKinect" << endl;
 		return -1;
 	}
-	else cout << "AzureKinect¸öÊıÎª" << kinect_count << endl;
+	else cout << "AzureKinectä¸ªæ•°ä¸º" << kinect_count << endl;
 
 	k4a_device_t Kinect_1_device = NULL;
 	if (k4a_device_open(K4A_DEVICE_DEFAULT, &Kinect_1_device) != K4A_RESULT_SUCCEEDED)
 	{
-		cout << "Éè±¸´ò¿ªÊ§°Ü" << endl;
+		cout << "è®¾å¤‡æ‰“å¼€å¤±è´¥" << endl;
 		return -1;
 	}
-	else cout << "AzureKinect´ò¿ª³É¹¦" << endl;
+	else cout << "AzureKinectæ‰“å¼€æˆåŠŸ" << endl;
 
 	k4a_device_configuration_t Kinect_1_config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
 	Kinect_1_config.camera_fps		 = K4A_FRAMES_PER_SECOND_30;
@@ -37,10 +37,10 @@ int main()
 
 	if (k4a_device_start_cameras(Kinect_1_device, &Kinect_1_config) != K4A_RESULT_SUCCEEDED)
 	{
-		cout << "¿ªÊ¼Ïà»úÊ§°Ü" << endl;
+		cout << "å¼€å§‹ç›¸æœºå¤±è´¥" << endl;
 		return -1;
 	}
-	else cout << "¿ªÊ¼Ïà»ú³É¹¦" << endl;
+	else cout << "å¼€å§‹ç›¸æœºæˆåŠŸ" << endl;
 
 	k4a_capture_t kinect_capture = NULL;
 
@@ -48,7 +48,7 @@ int main()
 	Mat color_frame;
 
 	Sleep(1000);
-	//µÈ´ı1Ãë
+	//ç­‰å¾…1ç§’
 	int while_count = 0;
 	uint8_t* color_buffer = NULL;
 
@@ -57,7 +57,7 @@ int main()
 		cout << while_count++ << endl;
 		if (k4a_device_get_capture(Kinect_1_device, &kinect_capture, 0)!=K4A_RESULT_SUCCEEDED)
 		{
-			cout << "»ñÈ¡²¶»ñÊ§°Ü" << endl;
+			cout << "è·å–æ•è·å¤±è´¥" << endl;
 			return -1;
 		}
 
@@ -66,12 +66,12 @@ int main()
 		int color_image_width_pixel = k4a_image_get_width_pixels(color_image);
 		int color_image_height_pixel = k4a_image_get_height_pixels(color_image);
 
-		//ÏÂÁĞÁ½ÖÖ³õÊ¼»¯·½·¨¶¼¿ÉÒÔ
-		//·½·¨1
+		//ä¸‹åˆ—ä¸¤ç§åˆå§‹åŒ–æ–¹æ³•éƒ½å¯ä»¥
+		//æ–¹æ³•1
 		color_frame = Mat(color_image_height_pixel, color_image_width_pixel, CV_8UC4);
 		color_frame.data = k4a_image_get_buffer(color_image);
 
-		//·½·¨2
+		//æ–¹æ³•2
 		//color_buffer = k4a_image_get_buffer(color_image);
 		//color_frame = Mat(color_image_height_pixel, color_image_width_pixel, CV_8UC4, color_buffer);
 
